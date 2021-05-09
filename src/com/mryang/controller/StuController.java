@@ -36,16 +36,26 @@ public class StuController {
 //                int selectOp = Stupage.selectFunctionSel();
                 selectOperation(Stupage.selectFunctionSel(),stuList);
                 break;
-            case 2:
-                // 添加
-                System.out.println("tj");
+            case 2: // 添加
+                System.out.println("添加学生:");
+                // 通过页面提示获取一个学生对象
+                Student stu = Stupage.getStuObj();
+                // 将学生对象传递给model层的学生的添加功能,并返回添加结果
+                Boolean success = stuModel.addStu(stu,stuList);
+                // 通过页面反馈给用户结果
+                if(success) {
+                    Stupage.stuActionSuccess("用户添加成功！");
+                }else{
+                    Stupage.stuActionFailed("用户添加失败！");
+                }
+                Stupage.showStuList(stuList);
                 break;
-            case 3:
-                // 修改
+            case 3: // 修改
+
                 System.out.println("xg");
                 break;
-            case 4:
-                // 删除
+            case 4: // 删除
+
                 System.out.println("sc");
                 break;
         }
@@ -77,13 +87,22 @@ public class StuController {
                 Stupage.showStuList(res);
                 break;
             case 3: // 姓名查询
-
+                System.out.println("按照姓名查询学生信息如下:");
+                String name = Stupage.getStuName();
+                res = stuModel.showByName(stuList, name);
+                Stupage.showStuList(res);
                 break;
             case 4: // 年龄查询
-
+                System.out.println("按照年龄查询学生信息如下:");
+                int age = Stupage.getStuAge();
+                res = stuModel.showByAge(stuList, age);
+                Stupage.showStuList(res);
                 break;
             case 5: // 成绩查询
-
+                System.out.println("按照成绩查询学生信息如下:");
+                float score[] = Stupage.getStuScoreBetweenAnd();
+                res = stuModel.showByScore(stuList, score);
+                Stupage.showStuList(res);
                 break;
         }
     }

@@ -82,4 +82,70 @@ public class Stupage {
         System.out.print("请输入要查询的学号:");
         return new Scanner(System.in).nextInt();
     }
+
+    /**
+     * 获取要查询的学生姓名
+     * @return 姓名
+     */
+    public static String getStuName() {
+        System.out.print("请输入要查询的学生姓名:");
+        return new Scanner(System.in).nextLine();
+    }
+
+    /**
+     * 获取要查询的学生年龄
+     * @return 年龄
+     */
+    public static int getStuAge() {
+        System.out.print("请输入要查询的学生年龄:");
+        return new Scanner(System.in).nextInt();
+    }
+
+    /**
+     * 获取要查询的成绩区间
+     * @return 成绩 [0] 最低分 [1] 最高分
+     */
+    public static float[] getStuScoreBetweenAnd() {
+        float[] score = new float[2];
+        System.out.print("请输入要查询的最低分:");
+        score[0] = new Scanner(System.in).nextInt();
+        System.out.print("请输入要查询的最高分:");
+        score[1] = new Scanner(System.in).nextInt();
+        return score;
+    }
+
+    /**
+     * 添加学生信息
+     * @return 学生信息
+     */
+    public static Student getStuObj() {
+        System.out.print("请输入学生学号:");
+        int id = new Scanner(System.in).nextInt();
+        System.out.print("请输入学生姓名:");
+        String name = new Scanner(System.in).nextLine();
+        System.out.print("请输入学生性别:");
+        String sex = new Scanner(System.in).nextLine();
+        System.out.print("请输入学生年龄:");
+        int age = new Scanner(System.in).nextInt();
+        System.out.print("请输入学生成绩:");
+        float score = new Scanner(System.in).nextFloat();
+
+        return new Student(id,name,sex,age,score);
+    }
+
+    /**
+     * 学生相关操作成功提示页面
+     * @param info 具体操作提示信息
+     */
+    public static void stuActionSuccess(String info) {
+        System.out.println("学生相关操作成功！ -- " + info);
+    }
+
+    /**
+     * 学生相关操作失败提示页面
+     * @param info
+     */
+    public static void stuActionFailed(String info) {
+        System.out.println("学生相关操作失败！ -- " + info);
+    }
 }
