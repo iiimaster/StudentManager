@@ -148,4 +148,39 @@ public class Stupage {
     public static void stuActionFailed(String info) {
         System.out.println("学生相关操作失败！ -- " + info);
     }
+
+    /**
+     * 获取要删除的学员ID
+     * @return 要删除的学员ID
+     */
+    public static int getDelStuID() {
+        System.out.print("请输入要删除的学员ID:");
+        return new Scanner(System.in).nextInt();
+    }
+
+    /**
+     * 获取要修改的学员ID
+     * @return 要修改的学员ID
+     */
+    public static int getEditStuID() {
+        System.out.print("请输入要修改的学员ID:");
+        return new Scanner(System.in).nextInt();
+    }
+
+
+    /**
+     * 根据ID修改学员信息
+     * @param editStuID 修改的学员ID
+     * @param editStu 修改后的学员信息
+     * @param stuList 学员信息集合
+     * @return 修改前的学员信息,失败返回null
+     */
+    public static Student updateStuByID(int editStuID, Student editStu, ArrayList<Student> stuList) {
+        for (int i = 0; i < stuList.size(); i++) {
+            if(editStuID == stuList.get(i).getId()){
+                return stuList.set(i, editStu);
+            }
+        }
+        return null;
+    }
 }

@@ -1,8 +1,10 @@
 package com.mryang.model;
 
 import com.mryang.globel.Student;
+import org.w3c.dom.stylesheets.StyleSheetList;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * @author Genius
@@ -98,5 +100,56 @@ public class StuModel {
      */
     public Boolean addStu(Student stu, ArrayList<Student> stuList) {
         return stuList.add(stu);
+    }
+
+    /**
+     * 根据ID删除学员
+     * @param id 要删除的学员ID
+     * @param stuList 学员信息集合
+     * @return 成功则返回删除的学员，失败返回null
+     */
+    public Student deleteStuByID(int id, ArrayList<Student> stuList) {
+        for (int i = 0; i < stuList.size(); i++) {
+            if(id == stuList.get(i).getId()){
+
+                return stuList.remove(i);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 根据ID查找学生信息
+     * @param editStuID 要查找的学生信息
+     * @param stuList 学生信息集合
+     * @return 找到返回学生信息，没找到返回null
+     */
+    public Student getEditStuByID(int editStuID, ArrayList<Student> stuList) {
+        for(Student stu : stuList) {
+            if(editStuID == stu.getId()){
+                return stu;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 修改学员信息
+     * @param editStu 修改前的学员信息
+     * @return 修改后的学员信息
+     */
+    public static Student EditStuInfo(Student editStu) {
+        System.out.print("请输入学生学号(原:"+editStu.getId()+"):");
+        int id = new Scanner(System.in).nextInt();
+        System.out.print("请输入学生姓名(原:"+editStu.getName()+"):");
+        String name = new Scanner(System.in).nextLine();
+        System.out.print("请输入学生性别(原:"+editStu.getSex()+"):");
+        String sex = new Scanner(System.in).nextLine();
+        System.out.print("请输入学生年龄(原:"+editStu.getAge()+"):");
+        int age = new Scanner(System.in).nextInt();
+        System.out.print("请输入学生成绩(原:"+editStu.getScore()+"):");
+        float score = new Scanner(System.in).nextFloat();
+
+        return new Student(id,name,sex,age,score);
     }
 }

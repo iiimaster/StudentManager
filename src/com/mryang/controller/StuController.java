@@ -48,15 +48,38 @@ public class StuController {
                 }else{
                     Stupage.stuActionFailed("用户添加失败！");
                 }
-                Stupage.showStuList(stuList);
                 break;
             case 3: // 修改
-
-                System.out.println("xg");
+                System.out.println("修改学生:");
+                // 获取要修改的学生ID
+                int editStuID = Stupage.getEditStuID();
+                // 将获取到的学生信息放到修改页面
+                Student editStu = stuModel.getEditStuByID(editStuID,stuList);
+                // 在修改页面修改原始数据，并拿到修改后的学生对象
+                if(null != editStu){
+                    editStu = stuModel.EditStuInfo(editStu);
+                }else{
+                    Stupage.stuActionFailed("要修改的学员信息不存在！");
+                    break;
+                }
+                // 在模型层对学生对象进行相应处理
+                // 将要修改的学员ID和更新后的学生对象传递给模型层进行修改，并返回修改前的学员信息
+                editStu = Stupage.updateStuByID(editStuID, editStu, stuList);
+                // 返回操作结果
+                Stupage.stuActionSuccess("修改成功！\n" + editStu);
                 break;
             case 4: // 删除
-
-                System.out.println("sc");
+                System.out.println("删除学生:");
+                // 获取要删除学员ID
+                int id = Stupage.getDelStuID();
+                // 删除操作，并返回删除的学员信息
+                Student delStu = stuModel.deleteStuByID(id,stuList);
+                // 给予用户反馈
+                if(delStu != null) {
+                    Stupage.stuActionSuccess("删除成功！\n" + delStu);
+                }else {
+                    Stupage.stuActionFailed("删除失败！");
+                }
                 break;
         }
     }
@@ -106,8 +129,6 @@ public class StuController {
                 break;
         }
     }
-
-
 }
 
 
