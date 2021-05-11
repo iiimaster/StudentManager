@@ -31,18 +31,23 @@ public class StudentManagerMain {
         MyUtils.initStuList(stuList); // 初始化学员信息(测试数据)
 
         // 用户登录或注册的功能操作，如果操作失败则退出用户管理主程序
-
         int operation = UserPage.userWelcome();
         User user = uc.Operation(operation,userList);
         if (null != user)
-            UserPage.userActionSuccess("欢迎用户 " + user +" 回来！");
-        else
+            UserPage.userActionSuccess("欢迎用户 " + user.getUserName() +" 回来！");
+        else{
             UserPage.userActionFailed("用户操作失败！");
+            System.exit(-1); // 自定义退出码
+        }
 
         // 学生管理的主程序
         // 调用视图层欢迎界面来让用户选择要进行的操作
         // 得到用户的请求之后传递给控制器进行功能的调度分配
 //        int operation = Stupage.stuWelcome();
+//         用户权限设置
+//        if(user.equals("1")){
+//            sc.
+//        }
         while(true){
             sc.Operation(Stupage.stuWelcome(),stuList);
         }

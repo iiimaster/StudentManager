@@ -1,11 +1,63 @@
 package com.mryang.view;
 
+import com.mryang.globel.User;
+
+import java.util.Scanner;
+
 /**
  * @author Genius
  * @version 1.0.0
  * @ClassName UserPage.java
- * @Description TODO 用户网络层
+ * @Description TODO 用户视图层 用户页面
  * @createTime 2021年05月10日 17:12:00
  */
 public class UserPage {
+    /**
+     * 用户功能选择
+     * @return 用户选择的功能
+     */
+    public static int userWelcome() {
+        int operation = 0;
+        System.out.println("* *********************** *");
+        System.out.println("* 欢迎使用登录功能 *");
+        System.out.println("* 1 - 登录 *");
+        System.out.println("* 2 - 注册 *");
+        System.out.println("* 0 - 退出 *");
+        System.out.println("* ************************ *");
+
+        do {
+            System.out.print("请输入要进行的操作:");
+            operation = new Scanner(System.in).nextInt();
+        }while(operation > 2 || operation < 0);
+        return operation;
+    }
+
+    /**
+     * 操作成功反馈的信息
+     * @param info 操作信息
+     */
+    public static void userActionSuccess(String info) {
+        System.out.println("用户操作成功！" + info);
+    }
+
+    /**
+     * 操作成功反馈的信息
+     * @param info
+     */
+    public static void userActionFailed(String info) {
+        System.out.println("操作失败！" + info);
+    }
+
+    /**
+     * 获取登录信息
+     * @return 用户不完整的信息（不包括用户ID和status）
+     */
+    public static User getLoginUser() {
+        System.out.print("请输入用户名:");
+        String userName = new Scanner(System.in).nextLine();
+        System.out.print("请输入密码:");
+        String password = new Scanner(System.in).nextLine();
+
+        return new User(userName, password);
+    }
 }
