@@ -1,7 +1,9 @@
 package com.mryang.controller;
 
+import com.mryang.globel.Student;
 import com.mryang.globel.User;
 import com.mryang.model.UserModel;
+import com.mryang.view.Stupage;
 import com.mryang.view.UserPage;
 
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 public class UserController {
 
     private UserModel userModel = new UserModel();
+    private StuController stuController = new StuController();
     /**
      * 用户功能调度方法
      * @param operation 用户要操作的功能
@@ -41,6 +44,13 @@ public class UserController {
                 break;
             case 2:
                 System.out.println("注册！");
+                // 获取一个不完整的用户信息（不包括id和status）
+                // 将获取的不完整的用户信息与用户信息集合中的信息进行校对，保证输入的用户是可用的（用户名不能重复）
+                User regUser = UserPage.getRegUser(userList);
+                // 将这个用户对象通过模型层添加到用户信息集合中，并返回完整的用户信息
+                // 将用户信息赋值给user，用于返回给主方法进行下一步操作
+                user = userModel.Registered(regUser,userList);
+
                 break;
             case 0:
                 System.out.println("欢迎再次使用！ Bye！");
@@ -48,5 +58,16 @@ public class UserController {
                 break;
         }
         return user;
+    }
+
+    /**
+     * 用户权限控制
+     * @param user 用户
+     */
+    public void AccessControl(User user, ArrayList<Student> stuList) {
+        if("1".equals(user.getStatus())){
+            stuController.selectOperation(Stupage.selectFunctionSel(),stuList);
+        }else
+            stuController.Operation(Stupage.stuWelcome(),stuList);
     }
 }

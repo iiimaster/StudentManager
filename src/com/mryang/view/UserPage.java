@@ -1,7 +1,9 @@
 package com.mryang.view;
 
 import com.mryang.globel.User;
+import com.mryang.model.UserModel;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -59,5 +61,36 @@ public class UserPage {
         String password = new Scanner(System.in).nextLine();
 
         return new User(userName, password);
+    }
+
+    /**
+     * 获取注册的用户信息（不包含id和status）
+     * @param userList 用户信息集合
+     * @return 不完整的用户信息
+     */
+    public static User getRegUser(ArrayList<User> userList) {
+        String userName = "";
+        String password = "";
+
+        while(true){ // 对用户名进行判断（存在则重新输入）
+            System.out.print("请输入用户名:");
+            userName = new Scanner(System.in).nextLine();
+            // 模拟Ajax 做页面无刷新情况下的数据同步 也就是不通过Controller来做数据同步交互
+            if (new UserModel().userNameExists(userName,userList)){
+                System.out.println("用户名不可用！请重新输入！");
+            }else
+                break;
+        }
+        while(true){
+            System.out.print("请输入密码:");
+            password = new Scanner(System.in).nextLine();
+            System.out.print("请再次输入密码:");
+            if(password.equals(new Scanner(System.in).nextLine())){
+                break;
+            }else{
+                System.out.println("两次密码不一致！请重新输入！");
+            }
+        }
+        return new User(userName,password);
     }
 }

@@ -45,11 +45,9 @@ public class StudentManagerMain {
         // 得到用户的请求之后传递给控制器进行功能的调度分配
 //        int operation = Stupage.stuWelcome();
 //         用户权限设置
-//        if(user.equals("1")){
-//            sc.
-//        }
         while(true){
-            sc.Operation(Stupage.stuWelcome(),stuList);
+            uc.AccessControl(user,stuList);
+//            sc.Operation(Stupage.stuWelcome(),stuList);
         }
 
     }

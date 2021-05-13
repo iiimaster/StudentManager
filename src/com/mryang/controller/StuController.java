@@ -88,9 +88,9 @@ public class StuController {
      * 查询功能调度方法
      *
      * @param selectFunctionSel 用户输入的查询依据请求
-     * @param stuList
+     * @param stuList 用户信息集合
      */
-    private void selectOperation(int selectFunctionSel, ArrayList<Student> stuList) {
+    public void selectOperation(int selectFunctionSel, ArrayList<Student> stuList) {
         // 查询结果集,初始化
         ArrayList<Student> res = null;
 
