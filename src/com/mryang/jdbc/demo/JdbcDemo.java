@@ -1,4 +1,4 @@
-package com.mryang.jdbc;
+package com.mryang.jdbc.demo;
 
 import java.sql.*;
 
@@ -6,7 +6,7 @@ import java.sql.*;
  * @author Genius
  * @version 1.0.0
  * @ClassName JdbcDemo.java
- * @Description TODO Jdbc连接数据库
+ * @Description TODO Jdbc连接数据库(普通)
  * @createTime 2021年05月13日 21:25:00
  */
 public class JdbcDemo {
