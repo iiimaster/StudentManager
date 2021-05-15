@@ -1,8 +1,14 @@
 package com.mryang.view;
 
 import com.mryang.globel.User;
+import com.mryang.jdbc.JdbcUtils;
 import com.mryang.model.UserModel;
 
+import javax.lang.model.element.NestingKind;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -68,7 +74,7 @@ public class UserPage {
      * @param userList 用户信息集合
      * @return 不完整的用户信息
      */
-    public static User getRegUser(ArrayList<User> userList) {
+    public static User getRegUser(ArrayList<User> userList) throws SQLException {
         String userName = "";
         String password = "";
 
@@ -77,7 +83,7 @@ public class UserPage {
             userName = new Scanner(System.in).nextLine();
             // 模拟Ajax 做页面无刷新情况下的数据同步 也就是不通过Controller来做数据同步交互
             if (new UserModel().userNameExists(userName,userList)){
-                System.out.println("用户名不可用！请重新输入！");
+                System.out.println("用户名已存在！请重新输入！");
             }else
                 break;
         }
@@ -92,5 +98,13 @@ public class UserPage {
             }
         }
         return new User(userName,password);
+    }
+
+    /**
+     * 退出页面
+     */
+    public static void ByeBye() {
+        System.out.println("欢迎再次使用！ Bye！");
+        System.exit(0);
     }
 }

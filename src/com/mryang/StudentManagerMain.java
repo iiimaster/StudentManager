@@ -9,6 +9,7 @@ import com.mryang.globel.User;
 import com.mryang.view.Stupage;
 import com.mryang.view.UserPage;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +20,7 @@ import java.util.ArrayList;
  * @createTime 2021年05月06日 16:17:00
  */
 public class StudentManagerMain {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // 定义一个用户控制器对象
         UserController uc = new UserController();
         // 定义一个学生控制器对象

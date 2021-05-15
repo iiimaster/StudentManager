@@ -6,6 +6,7 @@ import com.mryang.model.UserModel;
 import com.mryang.view.Stupage;
 import com.mryang.view.UserPage;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -25,7 +26,7 @@ public class UserController {
      * @param userList 用户信息集合
      * @return 成功登录的用户，null 登录失败
      */
-    public User Operation(int operation, ArrayList<User> userList) {
+    public User Operation(int operation, ArrayList<User> userList) throws SQLException {
         User user = null;
         switch(operation){
             case 1:
@@ -50,11 +51,9 @@ public class UserController {
                 // 将这个用户对象通过模型层添加到用户信息集合中，并返回完整的用户信息
                 // 将用户信息赋值给user，用于返回给主方法进行下一步操作
                 user = userModel.Registered(regUser,userList);
-
                 break;
             case 0:
-                System.out.println("欢迎再次使用！ Bye！");
-                System.exit(0);
+                UserPage.ByeBye();
                 break;
         }
         return user;
@@ -65,7 +64,7 @@ public class UserController {
      * @param user 用户
      */
     public void AccessControl(User user, ArrayList<Student> stuList) {
-        if("1".equals(user.getStatus())){
+        if("2".equals(user.getStatus())){
             stuController.selectOperation(Stupage.selectFunctionSel(),stuList);
         }else
             stuController.Operation(Stupage.stuWelcome(),stuList);
