@@ -1,8 +1,16 @@
 package com.mryang.model;
 
 import com.mryang.globel.Student;
+import com.mryang.globel.User;
+import com.mryang.jdbc.JdbcUtils;
+import com.mryang.view.Stupage;
+import com.mryang.view.UserPage;
 import org.w3c.dom.stylesheets.StyleSheetList;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,6 +22,9 @@ import java.util.Scanner;
  * @createTime 2021年05月06日 20:59:00
  */
 public class StuModel {
+    private ResultSet resultSet =  null;
+    private PreparedStatement preparedStatement = null;
+    private Connection connection = null;
 
     /**
      * 获取全部的学生信息并返回集合
@@ -21,7 +32,14 @@ public class StuModel {
      * @param stuList 学生数据集合
      * @return 全部学生的数据集合
      */
-    public ArrayList<Student> showAll(ArrayList<Student> stuList) {
+    public ArrayList<Student> showAll(ArrayList<Student> stuList){
+//        Student stu = null;
+//        connection = JdbcUtils.getConnection();
+//        String sql = "select `id`,`stu_name`,`stu_age`,`stu_sex`,`stu_score`,`stu_tel`,`stu_classid` from `student`";
+//        preparedStatement = connection.prepareStatement(sql);
+//        resultSet = preparedStatement.executeQuery();
+//        JdbcUtils.free(resultSet,preparedStatement,connection);
+//        Stupage.showStudent(resultSet);
         return stuList;
     }
 
@@ -109,6 +127,14 @@ public class StuModel {
      * @return 成功则返回删除的学员，失败返回null
      */
     public Student deleteStuByID(int id, ArrayList<Student> stuList) {
+        /*Student stu = null;
+        Connection connection = JdbcUtils.getConnection();
+        String sql = "delete from student where id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1,id);
+        int count = preparedStatement.executeUpdate();
+        UserPage.NumberOfAffected(count);
+        return ;*/
         for (int i = 0; i < stuList.size(); i++) {
             if(id == stuList.get(i).getId()){
 

@@ -1,6 +1,5 @@
 package com.mryang;
 
-
 import com.mryang.controller.StuController;
 import com.mryang.controller.UserController;
 import com.mryang.globel.MyUtils;
@@ -16,7 +15,7 @@ import java.util.ArrayList;
  * @author Genius
  * @version 1.0.0
  * @ClassName StudentManagerMain.java
- * @Description TODO 学生管理系统的主方法
+ * @Description TODO 学生管理系统的主方法  // *非数据库版*
  * @createTime 2021年05月06日 16:17:00
  */
 public class StudentManagerMain {
