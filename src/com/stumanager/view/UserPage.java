@@ -1,13 +1,8 @@
-package com.mryang.view;
+package com.stumanager.view;
 
-import com.mryang.globel.User;
-import com.mryang.jdbc.JdbcUtils;
-import com.mryang.model.UserModel;
+import com.stumanager.globel.User;
+import com.stumanager.model.UserModel;
 
-import javax.lang.model.element.NestingKind;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -74,7 +69,7 @@ public class UserPage {
      * @param userList 用户信息集合
      * @return 不完整的用户信息
      */
-    public static User getRegUser(ArrayList<User> userList) throws SQLException {
+    public static User getRegUser() throws SQLException {
         String userName = "";
         String password = "";
 
@@ -82,7 +77,7 @@ public class UserPage {
             System.out.print("请输入用户名:");
             userName = new Scanner(System.in).nextLine();
             // 模拟Ajax 做页面无刷新情况下的数据同步 也就是不通过Controller来做数据同步交互
-            if (new UserModel().userNameExists(userName,userList)){
+            if (new UserModel().userNameExists(userName)){
                 System.out.println("用户名已存在！请重新输入！");
             }else
                 break;

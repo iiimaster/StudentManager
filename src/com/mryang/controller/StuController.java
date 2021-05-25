@@ -4,6 +4,7 @@ import com.mryang.globel.Student;
 import com.mryang.model.StuModel;
 import com.mryang.view.Stupage;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,13 +25,13 @@ public class StuController {
      * @param operation 用户将要进行的操作
      * @param stuList
      */
-    public void Operation(int operation, ArrayList<Student> stuList) {
+    public void Operation(int operation, ArrayList<Student> stuList) throws SQLException {
         switch (operation) {
             case 0:
                 // 退出
                 System.out.println("欢迎再次使用！~");
                 System.exit(0);
-            case 1:
+            case 1: // 查询
                 // 通过查询功能选择界面来选择通过哪种方式进行查询
                 // 获取用户的查询功能请求之后,传递给查询功能调度方法
 //                int selectOp = Stupage.selectFunctionSel();
@@ -90,7 +91,7 @@ public class StuController {
      * @param selectFunctionSel 用户输入的查询依据请求
      * @param stuList 用户信息集合
      */
-    public void selectOperation(int selectFunctionSel, ArrayList<Student> stuList) {
+    public void selectOperation(int selectFunctionSel, ArrayList<Student> stuList) throws SQLException {
         // 查询结果集,初始化
         ArrayList<Student> res = null;
 
@@ -101,6 +102,7 @@ public class StuController {
             case 1: // 查询全部
                 System.out.println("全部学生学生信息查询如下:");
                 res = stuModel.showAll(stuList);
+//                student = stuModel.showAll();
                 Stupage.showStuList(res);
                 break;
             case 2: // 学号查询
